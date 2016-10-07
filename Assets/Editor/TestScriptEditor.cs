@@ -27,18 +27,18 @@ public class TestScriptEditor : Editor
         // MEMO - defatul inspector: base.OnInspectorGUI();
         iconTex =(Texture2D) Resources.Load("icons/tools");
 
-        GUIContent curContent = new GUIContent();
-        curContent.image = iconTex;
-        curContent.text = "My Int";
-        curContent.tooltip = "My Tooltip";
-
-
         EditorGUILayout.Separator();    
         EditorGUILayout.LabelField("My Editor");
 
+        GUIContent curContent = new GUIContent();
+        curContent.image = iconTex;
+        curContent.text = "My Int";
+        curContent.tooltip = "My Tooltip for integer";
         targetScript.myInt = EditorGUILayout.IntField(curContent,targetScript.myInt);
 
+        curContent.image = iconTex;
         curContent.text = "My Float";
+        curContent.tooltip = "My Tooltip for float";
         targetScript.myFloat = EditorGUILayout.FloatField(curContent, targetScript.myFloat);
         
     }
