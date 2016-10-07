@@ -10,6 +10,7 @@ public class TestScriptEditor : Editor
 
     #region Private Variables
     TestScript targetScript;
+    Texture2D iconTex;
     #endregion
 
     #region Main Methods
@@ -24,6 +25,22 @@ public class TestScriptEditor : Editor
     public override void OnInspectorGUI()
     {
         // MEMO - defatul inspector: base.OnInspectorGUI();
+        iconTex =(Texture2D) Resources.Load("icons/tools");
+
+        GUIContent curContent = new GUIContent();
+        curContent.image = iconTex;
+        curContent.text = "My Int";
+        curContent.tooltip = "My Tooltip";
+
+
+        EditorGUILayout.Separator();    
+        EditorGUILayout.LabelField("My Editor");
+
+        targetScript.myInt = EditorGUILayout.IntField(curContent,targetScript.myInt);
+
+        curContent.text = "My Float";
+        targetScript.myFloat = EditorGUILayout.FloatField(curContent, targetScript.myFloat);
+        
     }
     #endregion
 
