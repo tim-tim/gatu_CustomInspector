@@ -20,6 +20,17 @@ public class TestScriptEditor : Editor
         // target - это поле, унаследованное от класса Editor, которое хранит в себе ссылку на "активированный" объект
         // возвращает Object, поэтому используется каст до нужного класса("изъятия" компоненты)
         targetScript = (TestScript)target;
+        Debug.Log("We enabled the editor");
+    }
+
+    void OnDisable()
+    {
+        Debug.Log("We disabled the editor");
+    }
+
+    void OnDestroy()
+    {
+        Debug.Log("We destroyed the editor");
     }
 
     public override void OnInspectorGUI()
