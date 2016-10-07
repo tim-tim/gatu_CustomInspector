@@ -71,7 +71,15 @@ public class TestScriptEditor : Editor
             //Debug.Log("Button pressed");
             targetScript.MoveObject();
         }
-        
+
+        GUILayout.Space(10);
+
+        targetScript.showList = EditorGUILayout.Foldout(targetScript.showList, "Show List:");
+        if(targetScript.showList)
+        {
+            EditorGUILayout.LabelField("We expanded foldout...");
+        }
+
         EditorGUILayout.EndVertical();
         GUILayout.Space(10);
         EditorGUILayout.EndHorizontal();
