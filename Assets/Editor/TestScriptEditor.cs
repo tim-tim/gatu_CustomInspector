@@ -38,20 +38,49 @@ public class TestScriptEditor : Editor
         // MEMO - defatul inspector: base.OnInspectorGUI();
         iconTex =(Texture2D) Resources.Load("icons/tools");
 
-        EditorGUILayout.Separator();    
-        EditorGUILayout.LabelField("My Editor");
-
-        GUIContent curContent = new GUIContent();
-        curContent.image = iconTex;
-        curContent.text = "My Int";
-        curContent.tooltip = "My Tooltip for integer";
-        targetScript.myInt = EditorGUILayout.IntField(curContent,targetScript.myInt);
-
-        curContent.image = iconTex;
-        curContent.text = "My Float";
-        curContent.tooltip = "My Tooltip for float";
-        targetScript.myFloat = EditorGUILayout.FloatField(curContent, targetScript.myFloat);
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Space(10);
+        EditorGUILayout.BeginVertical();
         
+        EditorGUILayout.LabelField("My Editor:");
+
+        
+        targetScript.myInt = EditorGUILayout.IntField(EditorUtils.BuildContent(
+                    iconTex,
+                    "My Int",
+                    "My Tooltip for integer"
+                    ),
+                    targetScript.myInt);
+
+        targetScript.myFloat = EditorGUILayout.FloatField(EditorUtils.BuildContent(
+                    iconTex,
+                    "My Float",
+                    "My Tooltip for integer"
+                    ),
+                    targetScript.myFloat);       
+
+        GUILayout.Space(10);
+
+        if (GUILayout.Button(EditorUtils.BuildContent(
+                    iconTex,
+                    "Click Me",
+                    "My Tooltip for button"
+                    ),
+                    GUILayout.Height(40)))
+        {
+            //Debug.Log("Button pressed");
+            targetScript.MoveObject();
+        }
+        
+        EditorGUILayout.EndVertical();
+        GUILayout.Space(10);
+        EditorGUILayout.EndHorizontal();
+
+        if (GUI.changed)
+        {
+            Debug.Log("We changed the gui elements.");
+        }
+
     }
     #endregion
 

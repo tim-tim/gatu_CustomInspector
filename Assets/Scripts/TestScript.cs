@@ -13,4 +13,12 @@ public class TestScript : MonoBehaviour
 
     #region Main Methods
     #endregion
+
+    #region Utility Methods
+    public void MoveObject()
+    {
+        transform.position += new Vector3(0f, 1f, 0f);
+    }
+    #endregion
 }
+
