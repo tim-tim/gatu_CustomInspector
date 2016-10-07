@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TestScript : MonoBehaviour
 {
-    #region Public Variables    
+    #region Public Variables
     #endregion
 
     #region Private Variables
