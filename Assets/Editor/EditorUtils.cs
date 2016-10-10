@@ -15,7 +15,5 @@ public static class EditorUtils
         curContent.tooltip = toolTip;
 
         return curContent;
-    }
-
-	
+    }	
 }

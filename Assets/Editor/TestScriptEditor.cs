@@ -11,6 +11,7 @@ public class TestScriptEditor : Editor
     #region Private Variables
     TestScript targetScript;
     Texture2D iconTex;
+    string curString = "Add a new string...";
     #endregion
 
     #region Main Methods
@@ -72,12 +73,59 @@ public class TestScriptEditor : Editor
             targetScript.MoveObject();
         }
 
-        GUILayout.Space(10);
+        GUILayout.Space(10);        
 
         targetScript.showList = EditorGUILayout.Foldout(targetScript.showList, "Show List:");
-        if(targetScript.showList)
+        if (targetScript.showList)
         {
-            EditorGUILayout.LabelField("We expanded foldout...");
+            if (targetScript.myStringList != null)
+            {
+                if (targetScript.myStringList.Count > 0)
+                {
+                    for (int i = 0; i < targetScript.myStringList.Count; i++)
+                    {
+                        EditorGUILayout.BeginHorizontal();
+                        EditorGUILayout.TextField("String_0" + i, targetScript.myStringList[i]);
+                        if (GUILayout.Button("-", GUILayout.Width(20)))
+                        {
+                            if (targetScript.myStringList[i] != null)
+                            {
+                                if (EditorUtility.DisplayDialog("Warning:", "Remove an item?", "OK"))
+                                {
+                                    targetScript.myStringList.RemoveAt(i);
+                                }
+                            }
+                            
+                        }
+                        EditorGUILayout.EndHorizontal();
+                    }
+                }
+                else
+                {
+                    EditorGUILayout.LabelField("No string entered into list...");
+                }
+
+                GUILayout.Space(15);
+
+                curString = EditorGUILayout.TextField("String to Add: ", curString);
+                if(GUILayout.Button("Add String", GUILayout.Height(40)))
+                {
+                    if(curString != "Add a new string..." && curString != "")
+                    {
+                        targetScript.myStringList.Add(curString);
+                        curString = "Add a new string...";
+                    }
+                    else
+                    {
+                        EditorUtility.DisplayDialog("Editor Message:", "Please enter a valid string...", "OK");
+                    }
+                }
+            }
+            else
+            {
+                EditorGUILayout.LabelField("List is null");
+            }            
+            
         }
 
         EditorGUILayout.EndVertical();
